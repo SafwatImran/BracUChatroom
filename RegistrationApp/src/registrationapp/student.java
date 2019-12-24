@@ -15,18 +15,16 @@ import javax.swing.JOptionPane;
  *
  * @author User
  */
-
-public class addStudent extends javax.swing.JFrame {
+public class student extends javax.swing.JFrame {
 
     /**
-     * Creates new form addStudent
+     * Creates new form student
      */
     Connection conn = null;
-    Statement stmt = null;
+    Statement stmt = null; 
     ResultSet rs = null;
-
-    public addStudent() {
-        super("Add Student");
+    public student() {
+        super("Students");
         initComponents();
         conn = databaseConnection.connection();
     }
@@ -40,7 +38,8 @@ public class addStudent extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jCheckBox1 = new javax.swing.JCheckBox();
+        courseName = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -48,13 +47,20 @@ public class addStudent extends javax.swing.JFrame {
         sId = new javax.swing.JTextField();
         sEmail = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        courseName = new javax.swing.JTextField();
-        submit = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-
-        jCheckBox1.setText("jCheckBox1");
+        search = new javax.swing.JButton();
+        id = new javax.swing.JTextField();
+        update = new javax.swing.JButton();
+        delete = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jButton1.setText("Back");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("name");
 
@@ -68,32 +74,45 @@ public class addStudent extends javax.swing.JFrame {
             }
         });
 
+        sId.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sIdActionPerformed(evt);
+            }
+        });
+
         jLabel4.setText("course");
 
-        courseName.addActionListener(new java.awt.event.ActionListener() {
+        search.setText("Search");
+        search.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                courseNameActionPerformed(evt);
+                searchActionPerformed(evt);
             }
         });
 
-        submit.setText("Submit");
-        submit.addActionListener(new java.awt.event.ActionListener() {
+        update.setText("Update");
+        update.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                submitActionPerformed(evt);
+                updateActionPerformed(evt);
             }
         });
 
-        jButton1.setText("Back");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        delete.setText("Delete");
+        delete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                deleteActionPerformed(evt);
             }
         });
+
+        jLabel5.setText("Enter ID");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(search)
+                .addGap(56, 56, 56))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -102,25 +121,32 @@ public class addStudent extends javax.swing.JFrame {
                             .addComponent(jLabel1)
                             .addComponent(jLabel2)
                             .addComponent(jLabel3)
-                            .addComponent(jLabel4))
-                        .addGap(30, 30, 30)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(sId, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(sName, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(sEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(courseName, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5))
+                        .addGap(28, 28, 28)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(sId, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 92, Short.MAX_VALUE)
+                            .addComponent(sEmail, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 92, Short.MAX_VALUE)
+                            .addComponent(courseName, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 92, Short.MAX_VALUE)
+                            .addComponent(sName, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 92, Short.MAX_VALUE)
+                            .addComponent(id, javax.swing.GroupLayout.Alignment.LEADING)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(98, 98, 98)
-                        .addComponent(submit)
-                        .addGap(27, 27, 27)
+                        .addGap(66, 66, 66)
+                        .addComponent(update)
+                        .addGap(22, 22, 22)
+                        .addComponent(delete)
+                        .addGap(18, 18, 18)
                         .addComponent(jButton1)))
-                .addContainerGap(155, Short.MAX_VALUE))
+                .addContainerGap(109, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(31, 31, 31)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(search)
+                    .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5))
+                .addGap(8, 8, 8)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(courseName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -136,11 +162,12 @@ public class addStudent extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(sEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(29, 29, 29)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(submit)
-                    .addComponent(jButton1))
-                .addContainerGap(31, Short.MAX_VALUE))
+                    .addComponent(jButton1)
+                    .addComponent(update)
+                    .addComponent(delete))
+                .addGap(20, 20, 20))
         );
 
         pack();
@@ -150,31 +177,61 @@ public class addStudent extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_sNameActionPerformed
 
-    private void submitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitActionPerformed
+    private void sIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sIdActionPerformed
         // TODO add your handling code here:
+    }//GEN-LAST:event_sIdActionPerformed
+
+    private void searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchActionPerformed
+            // TODO add your handling code here:
         try {
-         stmt = conn.createStatement();
-         String name = sName.getText();
-         String id = sId.getText();
-         String email = sEmail.getText();
-         String sql = "INSERT INTO STUDENT(studentName,studentID,studentEmail) VALUES('"+name+"', '"+id+"', '"+email+"')";
-         stmt.executeUpdate(sql);
-          JOptionPane.showMessageDialog(null,"Saved Successfully");
+            stmt = conn.createStatement();
+            String sql1 = "SELECT * FROM STUDENT WHERE studentID = '"+id.getText()+"'";
+            rs = stmt.executeQuery(sql1);
+            if (rs.next()){
+             sName.setText(rs.getString("studentName"));
+             sEmail.setText(rs.getString("studentEmail"));
+             sId.setText(rs.getString("studentID"));
+             
+            }
         }catch(Exception e){
-         JOptionPane.showMessageDialog(null,e);
+        JOptionPane.showMessageDialog(null,e);
         }
-    }//GEN-LAST:event_submitActionPerformed
+    }//GEN-LAST:event_searchActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         setVisible(false);
         new home().setVisible(true);
-                                    
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void courseNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_courseNameActionPerformed
+    private void updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_courseNameActionPerformed
+         try {
+         stmt = conn.createStatement();
+         String name = sName.getText();
+         String id = sId.getText();
+         String email = sEmail.getText();
+         String sql = "UPDATE STUDENT SET studentName='"+name+"',studentEmail='"+email+"', "
+                 + "studentID='"+id+"'WHERE studentID ='"+this.id.getText()+"'";
+         stmt.executeUpdate(sql);
+          JOptionPane.showMessageDialog(null,"Updated Successfully");
+        }catch(Exception e){
+         JOptionPane.showMessageDialog(null,e);
+        }
+    }//GEN-LAST:event_updateActionPerformed
+
+    private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
+        // TODO add your handling code here:
+        try{
+            stmt = conn.createStatement();
+            String sql = "DELETE FROM student WHERE studentID = '"+id.getText()+"'";
+            stmt.executeUpdate(sql);
+            setVisible(false);
+            new showStudents().setVisible(true);
+        }catch(Exception e){
+        JOptionPane.showMessageDialog(null, e);
+        }
+    }//GEN-LAST:event_deleteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -193,35 +250,38 @@ public class addStudent extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(addStudent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(student.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(addStudent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(student.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(addStudent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(student.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(addStudent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(student.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new addStudent().setVisible(true);
+                new student().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField courseName;
+    private javax.swing.JButton delete;
+    private javax.swing.JTextField id;
     private javax.swing.JButton jButton1;
-    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JTextField sEmail;
     private javax.swing.JTextField sId;
     private javax.swing.JTextField sName;
-    private javax.swing.JButton submit;
+    private javax.swing.JButton search;
+    private javax.swing.JButton update;
     // End of variables declaration//GEN-END:variables
 }
